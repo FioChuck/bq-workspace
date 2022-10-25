@@ -1,0 +1,16 @@
+config { type: "view" }
+
+-- define table
+SELECT
+  AVG(tempinf) AS temp,
+  AVG(humidityin) AS humidity,
+  COUNT(*) as samples,
+  EXTRACT(DATE
+  FROM
+    processingtime) AS dt,
+FROM
+  `cf-data-analytics.sensor_data.eccowitt_stream`
+GROUP BY
+  dt
+ORDER BY
+  dt desc
