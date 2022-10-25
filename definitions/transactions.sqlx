@@ -1,7 +1,7 @@
 config { type: "operations" }
 
 -- define stored procedure
-CREATE OR REPLACE PROCEDURE dataform.create_customer()
+CREATE OR REPLACE PROCEDURE dataform.create_transactions()
 BEGIN
   DECLARE id STRING;
   SET id = GENERATE_UUID();
