@@ -5,7 +5,6 @@ CREATE OR REPLACE PROCEDURE dataform.create_customer()
 BEGIN
   DECLARE id STRING;
   SET id = GENERATE_UUID();
-  INSERT INTO dataform.customers (customer_id)
-    VALUES(id);
-  SELECT FORMAT("Created customer %s", id);
+  INSERT INTO dataform.customers (name,transaction)
+    VALUES('Chas',id);
 END
