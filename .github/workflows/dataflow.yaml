@@ -19,7 +19,7 @@ jobs:
         with:
           args: install
       - name: Decrypt dataform credentials
-        run: gpg --quiet --batch --yes --decrypt --passphrase="$CREDENTIALS_GPG_PASSPHRASE" --output .df-credentials.json gha-creds-9f29256b100f0cbf.json.gpg
+        run: gpg --quiet --batch --yes --decrypt --passphrase="$CREDENTIALS_GPG_PASSPHRASE" --output .df-credentials.json df-credentials-json.json.gpg
         env:
           CREDENTIALS_GPG_PASSPHRASE: ${{ secrets.CREDENTIALS_GPG_PASSPHRASE }}
       - name: Execute dataform run
