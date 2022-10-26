@@ -1,1 +1,5 @@
 node_modules/
+gha-creds-9f29256b100f0cbf.json
+
+
+gpg --symmetric --cipher-algo AES256 gha-creds-9f29256b100f0cbf.json
