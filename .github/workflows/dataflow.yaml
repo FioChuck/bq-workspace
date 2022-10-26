@@ -26,3 +26,6 @@ jobs:
         uses: docker://dataformco/dataform:1.6.11
         with:
           args: run
+
+
+dataform init --default-database=cf-data-analytic bigquery
