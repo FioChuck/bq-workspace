@@ -1,8 +1,6 @@
-config 
-{ 
+config { 
   type: "table",
-  assertions: 
-  {
+  assertions: {
     rowConditions: [
       'dt is not null',
       'temp < 70'
@@ -17,7 +15,7 @@ SELECT
   COUNT(*) as samples,
   EXTRACT(DATE
   FROM
-    processingtime) AS dt,
+    processingtime) AS dt
 FROM
   `cf-data-analytics.sensor_data.eccowitt_stream`
 GROUP BY
