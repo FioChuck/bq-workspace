@@ -3,7 +3,7 @@ config {
   assertions: {
     rowConditions: [
       'dt is not null',
-      'temp < 70'
+      'temp < 90'
     ]
   }
 }
