@@ -3,10 +3,10 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - dev-workspace
   pull_request:
     branches:
-      - master
+      - dev-workspace
 
 jobs:
   compile:
