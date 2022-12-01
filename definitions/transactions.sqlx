@@ -6,5 +6,5 @@ BEGIN
   DECLARE id STRING;
   SET id = GENERATE_UUID();
   INSERT INTO dataform.transactions (name,transaction)
-    VALUES('Kyle',id);
+    VALUES('Chas',id);
 END
