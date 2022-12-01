@@ -5,6 +5,6 @@ CREATE OR REPLACE PROCEDURE dataform.create_transactions()
 BEGIN
   DECLARE id STRING;
   SET id = GENERATE_UUID();
-  INSERT INTO dataform.transactions (name,transaction)
+  INSERT INTO dataform.transactions (name,transaction_id)
     VALUES('Chas',id);
 END
