@@ -1,0 +1,21 @@
+config { type: "operations" }
+
+-- define stored procedure
+CREATE OR REPLACE PROCEDURE dataform.merge_operation()
+BEGIN
+MERGE
+  dataform.secondary_transactions T
+USING
+  dataform.transactions S
+ON
+  T.transaction_id = S.transaction_id
+  WHEN NOT MATCHED
+  THEN
+INSERT
+  (_PARTITIONTIME,
+    name,
+    transaction_id,
+    date)
+VALUES
+  (_PARTITIONTIME,name,transaction_id,date);
+END
