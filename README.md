@@ -11,7 +11,7 @@ Copying tables partitioned on _ingestion time_ poses a challenge when using CTAS
 
 The diagram below outlines the tables and SPROCs used in this project. The `transactions` table contains simulated transaction data created by the `create_transactions()` SPROC.
 
-Each time the SPROC is called a new row is inserted into the `transactions` table _(similar to the row shown below)_. The `transaction_id` column contains a generated GUID.
+Each time the SPROC is called, a new row is inserted into the `transactions` table _(similar to the row shown below)_. The `transaction_id` column contains a generated GUID.
 
 ```json
 {
@@ -23,7 +23,7 @@ Each time the SPROC is called a new row is inserted into the `transactions` tabl
 
 The data in this table is partitioned by ingestion hour _(see Setup section below)_. Run `create_transactions()` across different hours to invoke multiple partitions. Next the `merge_operation()` SPROC is called to merge results from the `transactions` table into the `secondary_transactions` table. Notice the number of partitions remains the same. The `create_secondary_transactions()` SPROC can then be called to continue inserting records into the copied table.
 
-This entire process simulates copying ingestion time partitioned tables while maintaining the partitioning structure. The original number of partitions is unchanged and the new table will continue to partition new insertions according to the `_PARTITIONTIME` pseudo column. Refer to the Setup section for information on deploying this project into your own GCP environment.
+This entire process simulates copying tables partitioned on ingestion time while maintaining the partitioning structure. The original number of partitions is unchanged and the new table will continue to partition insertions according to the `_PARTITIONTIME` pseudo column. Refer to the Setup section for information on deploying this project into your own GCP environment.
 
 ```mermaid
 flowchart TD
@@ -39,7 +39,7 @@ The BigQuery `MERGE` statement is a DML statement designed to combine `INSERT`, 
 
 It can also be used to copy data while maintaining the partitioning structure _(even when partitioning on ingestion time)_.
 
-The `merge_operation()` SPROC used above calls the script shown below _(also in merge_operation.sqlx)_.
+The `merge_operation()` SPROC used above calls the script shown below _(also shown in merge_operation.sqlx)_.
 
 ```sql
 MERGE
@@ -63,7 +63,7 @@ Notice the `_PARTITIONTIME` column from the source is inserted into the sink. Th
 
 # Setup
 
-This project includes a yaml file for deployment to Google Cloud using Dataform. The workflow requires an "Action Secret" used to set environment variables during deployment. Set the following secrets in the repository before deployment.
+This project includes a yaml file for deployment to Google Cloud using Dataform. The workflow requires an _"Action Secret"_ used to set environment variables during deployment. Set the following secrets in the repository before deployment.
 
 More information on configuring CI/CD for Datafrom can be found here: https://docs.dataform.co/guides/ci-cd.
 
