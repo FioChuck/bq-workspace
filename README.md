@@ -3,7 +3,7 @@
 TL;DR
 A GCP BigQuery Dataform project outlining a technique for copy tables partitioned on _ingestion time_ while maintaining the original partitioning structure.
 
-Often tables populated via streaming are partitioned using the ingestion time using a pseudo column called `_PARTITIONTIME` or `_PARTITIONDATE`. Either of these pseudo columns can be truncated to reflect lower resolution such as day. More information on ingestion time/date partitioning can be found here: https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time
+Often tables populated via streaming are partitioned using the ingestion time using a pseudo column called `_PARTITIONTIME` or `_PARTITIONDATE`. Either of these pseudo columns can be truncated to reflect lower resolution such as `DAY` or `HOUR`. More information on ingestion time/date partitioning can be found here: https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time
 
 Copying tables partitioned on _ingestion time_ poses a challenge when using CTAS operations. This copy strategy inserts data into partitions in the sink table based on when the data was copied _(not when the data was originally streamed)_. This typically results in all the source data landing in a single partition in the sink table _(assuming the operation finishes in 1 hour)_.
 
