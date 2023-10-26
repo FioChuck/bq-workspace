@@ -1,0 +1,14 @@
+config { type: "table" }
+SELECT
+  DISTINCT term,
+  rank,
+  week
+FROM
+  `bigquery-public-data.google_trends.top_rising_terms`
+WHERE
+  refresh_date = PARSE_DATE("%Y%m%d", FORMAT_DATE("%Y%m%d", CURRENT_DATE() - 1))
+ORDER BY
+  week DESC,
+  rank ASC
+LIMIT
+  25

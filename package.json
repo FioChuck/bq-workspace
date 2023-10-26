@@ -1,6 +1,6 @@
 {
   "name": "demo-bq-repo",
   "dependencies": {
-    "@dataform/core": "^2.0.3"
+    "@dataform/core": "^2.7.0"
   }
 }
